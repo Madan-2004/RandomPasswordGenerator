@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"/>
+    <title>Random Password Generator</title>
+</head>
+<body>
+    
+    <div class="card">
+        <h1>Random <span>Password Generator!</span></h1>
+        <p>Need some Strong Passwords,</p> <p>Then Try Out!</p>
+        <div class="input">
+            <input type="text" id="password" placeholder="Click on Generate."/>
+            <button id="copy" onclick = "copy();">&#9741;</button>
+        </div>
+        <button id="generate" onclick="generate();">Generate <img src="images/generate.png"></button>
+    </div>
+
+    <script>
+        var password = document.getElementById("password");
+        var caps = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var small = "abcdefghijklmnopqrstuvwxyz";
+        var nums = "0123456789";
+        var special = "!@#$%^&*()";
+        var all = caps + small + nums + special;
+
+        function generate(){
+            var pass = "";
+            var length = 12;
+            pass += caps[ (Math.floor(Math.random() * 26)) ];
+            pass += small[ (Math.floor(Math.random() * 26)) ];
+            pass += nums[ (Math.floor(Math.random() * 10)) ];
+            pass += special[ (Math.floor(Math.random() * 10)) ];
+            for(let i = 4; i<length; i++){
+                pass += all[ (Math.floor(Math.random() * 72)) ];
+            }
+            password.value = pass;
+        }
+
+        function copy(){
+            password.select();
+            document.execCommand("copy");
+        }
+
+    </script>
+
+</body>
+</html>
